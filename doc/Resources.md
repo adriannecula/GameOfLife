@@ -10,3 +10,4 @@
 - Configure VSCode with CMake [here](https://code.visualstudio.com/docs/cpp/cmake-linux)
 - Make a grid with SFML [here](https://github.dev/vini-fda/Electric-Charges/blob/master/grid.cpp)
 
+
