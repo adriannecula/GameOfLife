@@ -5,7 +5,7 @@ project(GameOfLife LANGUAGES CXX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
-#
+set(CMAKE_CXX_STANDARD 17)
 
 
 # Install SFML library
@@ -25,8 +25,8 @@ if(WIN32)
 endif()
 
 
-add_subdirectory(library)
-add_subdirectory(executable)
+add_subdirectory(game_of_life_lib)
+add_subdirectory(game)
 
 file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 
