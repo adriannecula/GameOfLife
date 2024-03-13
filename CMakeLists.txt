@@ -25,8 +25,20 @@ if(WIN32)
 endif()
 
 
+# Fetch Google Test from GitHub
+FetchContent_Declare(googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG v1.14.0
+)
+# Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+# Make Google Test available
+FetchContent_MakeAvailable(googletest)
+
 add_subdirectory(game_of_life_lib)
 add_subdirectory(game)
+add_subdirectory(tests)
 
 file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 

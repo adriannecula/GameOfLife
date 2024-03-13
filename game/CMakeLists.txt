@@ -1,6 +1,7 @@
-file(GLOB SOURCES "*cpp")
+cmake_minimum_required(VERSION 3.22)
+project(game_of_life_exe)
 
-project(GameOfLifeExe)
+file(GLOB SOURCES "*cpp")
 add_executable(${PROJECT_NAME})
 target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 
