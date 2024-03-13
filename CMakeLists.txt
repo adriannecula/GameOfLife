@@ -6,7 +6,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
 #
-file(GLOB SOURCES "src/*")
+
 
 # Install SFML library
 include(FetchContent)
@@ -14,12 +14,6 @@ FetchContent_Declare(SFML
     GIT_REPOSITORY https://github.com/SFML/SFML.git
     GIT_TAG 2.6.x)
 FetchContent_MakeAvailable(SFML)
-
-
-
-add_executable(GameOfLife ${SOURCES})
-target_link_libraries(GameOfLife PRIVATE sfml-graphics)
-target_compile_features(GameOfLife PRIVATE cxx_std_20)
 
 if(WIN32)
     add_custom_command(
@@ -30,8 +24,12 @@ if(WIN32)
         VERBATIM)
 endif()
 
+
+add_subdirectory(library)
+add_subdirectory(executable)
+
 file(COPY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_BINARY_DIR})
 
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/resources DESTINATION ${CMAKE_INSTALL_PREFIX})
 
-install(TARGETS GameOfLife)
+

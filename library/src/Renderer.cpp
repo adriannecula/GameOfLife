@@ -1,5 +1,4 @@
-#include "Renderer.hpp"
-#include "Configuration.hpp"
+#include "../include/Renderer.hpp"
 #include <iostream>
 
 Renderer::Renderer(WindowInfo info_, Scene& scene_)

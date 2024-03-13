@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Button.hpp"
+#include "../include/Button.hpp"
 #include <SFML/Graphics.hpp>
 
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const

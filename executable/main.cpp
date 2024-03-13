@@ -1,13 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <vector>
-#include "VisualGrid.hpp"
-#include "Button.hpp"
-#include "GameOfLife.hpp"
+#include <Button.hpp>
+#include <GameOfLife.hpp>
+#include <VisualGrid.hpp>
 #include "Configuration.hpp"
 #include <mutex>
 #include <condition_variable>
-#include "Renderer.hpp"
+#include <Renderer.hpp>
+
 int main()
 {
     WindowInfo info{
