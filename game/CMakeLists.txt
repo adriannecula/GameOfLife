@@ -1,8 +1,10 @@
 cmake_minimum_required(VERSION 3.22)
 project(game_of_life_exe)
 
-file(GLOB SOURCES "*cpp")
+
 add_executable(${PROJECT_NAME})
+
+file(GLOB SOURCES "*cpp")
 target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 
 if(WIN32)

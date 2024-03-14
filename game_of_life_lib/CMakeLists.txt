@@ -3,9 +3,8 @@ project(game_of_life_lib)
 
 add_library(${PROJECT_NAME} STATIC)
 
-file(GLOB SOURCES "./src/*cpp")
 
-# Add source files
+file(GLOB SOURCES "./src/*cpp")
 target_sources(${PROJECT_NAME} PRIVATE ${SOURCES})
 
 #Include directories for header file
