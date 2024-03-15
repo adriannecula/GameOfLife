@@ -8,5 +8,12 @@ Is designed to be used in learning activities (workshops, code retreats).
 The graphical interface isdeveloped in [SFML library](https://www.sfml-dev.org/index.php).
 The unit test are written using [googletest](https://github.com/google/googletest)
 
+## Setup project for learning activities
+
+### Setup ubuntu
+WIP
+### Setup on windown
+WIP
+
 ## Limitations
 Currently building gtest fails on clang
