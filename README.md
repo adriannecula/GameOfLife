@@ -1,5 +1,12 @@
 # Game of Life in CPP
 
-This is a CPP implementation of the game of life with graphical interface made in SFML library, and unit testing in gtest
-The application can be used in diferent code retreats as a starting point.
+## Descrition
+This is a CPP implementation of the [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life).
+Is designed to be used in learning activities (workshops, code retreats).
 
+
+The graphical interface isdeveloped in [SFML library](https://www.sfml-dev.org/index.php).
+The unit test are written using [googletest](https://github.com/google/googletest)
+
+## Limitations
+Currently building gtest fails on clang
