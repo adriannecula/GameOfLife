@@ -10,6 +10,7 @@ file(GLOB_RECURSE SOURCES
     ${PROJECT_SOURCE_DIR}/*.cpp
     ${PROJECT_SOURCE_DIR}/view/*.cpp
     ${PROJECT_SOURCE_DIR}/controller/*.cpp
+    ${PROJECT_SOURCE_DIR}/model/*.cpp
 
 )
 
