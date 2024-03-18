@@ -1,4 +1,4 @@
-#include <Renderer.hpp>
+#include <view/Renderer.hpp>
 #include <iostream>
 
 Renderer::Renderer(WindowInfo info_, Scene& scene_)

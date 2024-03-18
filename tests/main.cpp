@@ -1,7 +1,7 @@
 #include <vector>
 #include <utility>
 #include <iostream>
-#include <RuleSet.hpp>
+#include <controller/RuleSet.hpp>
 
 #include <gtest/gtest.h>
 TEST(Example, MyTest)

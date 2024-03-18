@@ -1,4 +1,4 @@
-#include <RuleSet.hpp>
+#include <controller/RuleSet.hpp>
 
 // Find the number of valid neighbours for this cell
 //   x x x

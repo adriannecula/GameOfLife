@@ -1,11 +1,11 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Button.hpp"
-#include "RuleSet.hpp"
-#include "VisualGrid.hpp"
-#include <mutex>
-#include <condition_variable>
+#include <view/Button.hpp>
+#include <controller/RuleSet.hpp>
+#include <view/VisualGrid.hpp>
 
+#include<condition_variable>
+#include<mutex>
 struct Scene
 { 
     VisualGrid visualGrid;

@@ -1,4 +1,4 @@
-#include <VisualGrid.hpp>
+#include <view/VisualGrid.hpp>
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>

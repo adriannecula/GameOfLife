@@ -1,13 +1,14 @@
-#include <SFML/Graphics.hpp>
+
 #include <iostream>
 #include <vector>
-#include <Button.hpp>
-#include <RuleSet.hpp>
-#include <VisualGrid.hpp>
+
+#include <SFML/Graphics.hpp>
+#include <view/Button.hpp>
+#include <view/VisualGrid.hpp>
+#include <view/Renderer.hpp>
+#include <controller/RuleSet.hpp>
+
 #include "Configuration.hpp"
-#include <mutex>
-#include <condition_variable>
-#include <Renderer.hpp>
 
 int main()
 {
