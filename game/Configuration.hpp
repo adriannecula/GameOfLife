@@ -22,8 +22,8 @@ namespace resources
     const std::string fontLocation = "../resources/font/geo_1.ttf";
 }
 
-namespace button 
+namespace button
 {
-    const uint16_t width =50;
+    const uint16_t width = 50;
     const uint16_t height = 20;
 }

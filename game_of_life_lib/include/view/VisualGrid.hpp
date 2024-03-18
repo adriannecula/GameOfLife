@@ -26,7 +26,8 @@ public:
     uint16_t getRectangleFromMouseInput(uint16_t colum, uint16_t row) const;
     std::pair<std::vector<uint8_t>, uint16_t> exportValues() const;
     void importValues(std::pair<std::vector<uint8_t>, uint16_t> grid);
-    uint16_t getcolums(){
+    uint16_t getcolums()
+    {
         return config.columns;
     }
 

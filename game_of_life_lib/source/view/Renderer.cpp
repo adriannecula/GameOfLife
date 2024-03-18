@@ -1,8 +1,8 @@
 #include <view/Renderer.hpp>
 #include <iostream>
 
-Renderer::Renderer(WindowInfo info_, Scene& scene_)
-:window{{info_.width, info_.height}, info_.title}, scene{scene_}, isSimulationStarted{false}
+Renderer::Renderer(WindowInfo info_, Scene &scene_)
+    : window{{info_.width, info_.height}, info_.title}, scene{scene_}, isSimulationStarted{false}
 {
 }
 
@@ -14,11 +14,11 @@ void Renderer::loop()
         handleEvents();
         updateDisplay();
         auto loopEnd = std::chrono::steady_clock::now();
-        int64_t duration  = std::chrono::duration_cast<std::chrono::milliseconds>((loopEnd - loopStart)).count();
+        int64_t duration = std::chrono::duration_cast<std::chrono::milliseconds>((loopEnd - loopStart)).count();
         {
-          
+
             std::unique_lock<std::mutex> lock(mtx);
-            cv.wait_for(lock, std::chrono::milliseconds(100-duration));
+            cv.wait_for(lock, std::chrono::milliseconds(100 - duration));
         }
     }
 }
@@ -40,7 +40,6 @@ void Renderer::handleEvents()
             {
                 scene.visualGrid.toggleSquare(square);
             }
-            
         }
         if (scene.startButton.checkMousePressEvent(event))
         {

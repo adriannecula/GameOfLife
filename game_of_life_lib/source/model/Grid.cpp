@@ -4,5 +4,5 @@
 
 void Grid::foobar()
 {
-    std::cout<<"Placeholder for CMAKE structure\n";    
+    std::cout << "Placeholder for CMAKE structure\n";
 }

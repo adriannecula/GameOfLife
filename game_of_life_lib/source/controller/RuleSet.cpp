@@ -56,7 +56,7 @@ bool RuleSet::willCreate(uint16_t index)
             ++aliveNeighbour;
         }
     }
-    if (aliveNeighbour  == 3)
+    if (aliveNeighbour == 3)
     {
         return true;
     }
@@ -64,22 +64,19 @@ bool RuleSet::willCreate(uint16_t index)
     return false;
 }
 
-
-
 std::vector<uint8_t> RuleSet::calculate()
-{    
+{
     std::vector<uint8_t> newGrid;
     for (auto i = 0; i < grid.size(); ++i)
     {
         if (grid[i] == alive)
         {
-            willSurvive(i) ?  newGrid.push_back(alive) : newGrid.push_back(dead);  
+            willSurvive(i) ? newGrid.push_back(alive) : newGrid.push_back(dead);
         }
         else
         {
-             willCreate(i) ?  newGrid.push_back(alive) : newGrid.push_back(dead);  
+            willCreate(i) ? newGrid.push_back(alive) : newGrid.push_back(dead);
         }
-   
     }
     grid = newGrid;
     return grid;

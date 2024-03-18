@@ -1,5 +1,6 @@
 #pragma once
-class Grid{
+class Grid
+{
 public:
-void foobar();
+    void foobar();
 };

@@ -15,7 +15,8 @@ bool Button::checkMousePressEvent(sf::Event event)
         if (rectangle.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
         {
             return true;
-            std::cout<<"Button pressed\n"<<std::endl;
+            std::cout << "Button pressed\n"
+                      << std::endl;
         }
     }
     return false;
