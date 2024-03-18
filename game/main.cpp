@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <Button.hpp>
-#include <GameOfLife.hpp>
+#include <RuleSet.hpp>
 #include <VisualGrid.hpp>
 #include "Configuration.hpp"
 #include <mutex>

@@ -2,14 +2,14 @@
 
 #include <vector>
 #include <cstdint>
-class GameOfLife
+class RuleSet
 {
 public:
     const uint8_t alive = 1;
     const uint8_t dead = 0;
     const uint16_t underpopulationLimmit =2;
     const uint16_t overpopulationLimmit = 3; 
-     GameOfLife(std::pair<std::vector<uint8_t>,uint16_t> grid_ )
+     RuleSet(std::pair<std::vector<uint8_t>,uint16_t> grid_ )
      :grid{grid_.first}, colums(grid_.second)
      {
 

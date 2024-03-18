@@ -53,7 +53,7 @@ void Renderer::updateDisplay()
     if (isSimulationStarted)
     {
 
-        GameOfLife g{scene.visualGrid.exportValues()};
+        RuleSet g{scene.visualGrid.exportValues()};
         scene.visualGrid.importValues({g.calculate(), scene.visualGrid.getcolums()});
     }
     window.clear();

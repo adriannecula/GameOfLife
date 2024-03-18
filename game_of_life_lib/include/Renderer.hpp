@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Button.hpp"
-#include "GameOfLife.hpp"
+#include "RuleSet.hpp"
 #include "VisualGrid.hpp"
 #include <mutex>
 #include <condition_variable>
