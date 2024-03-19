@@ -14,8 +14,10 @@
 
 int main()
 {
-    Grid g{};
-    g.foobar();
+    
+    Grid g{Grid::Rows{5},Grid::Collumns{5}};
+    
+    
     WindowInfo info{
         .width{window::windowWidth},
         .height{window::windowHeight},

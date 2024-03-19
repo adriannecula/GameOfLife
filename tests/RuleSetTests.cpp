@@ -3,9 +3,15 @@
 #include <iostream>
 #include <controller/RuleSet.hpp>
 #include <TestGrids.hpp>
-
 #include <gtest/gtest.h>
-TEST(Example, MyTest)
+
+class RuleSetTests : public testing::Test
+{
+
+};
+
+
+TEST_F(RuleSetTests, MyTest)
 {
     std::pair<std::vector<uint8_t>, uint16_t> grid = helpers::getStandardGrid();
     RuleSet game{grid};
