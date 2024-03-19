@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
+#include <model/Grid.hpp>
 
 void VisualGrid::generateGrid()
 {
@@ -38,26 +39,30 @@ void VisualGrid::toggleSquare(uint16_t index)
     rectangles[index].getFillColor() == inactiveColor ? rectangles[index].setFillColor(activeColor) : rectangles[index].setFillColor(inactiveColor);
 }
 
-std::pair<std::vector<uint8_t>, uint16_t> VisualGrid::exportValues() const
+Grid VisualGrid::exportValues() const
 {
-    std::vector<uint8_t> values;
+    Grid grid{Grid::Rows{config.rows}, Grid::Collumns{config.columns}};
+    Grid::Values &vector = grid.getValues();
+
     for (const auto &rectangle : rectangles)
     {
-        rectangle.getFillColor() == inactiveColor ? values.push_back(0) : values.push_back(1);
+        rectangle.getFillColor() == inactiveColor ? vector.push_back(Grid::CellState::Dead) : vector.push_back(Grid::CellState::Alive);
     }
-    return std::make_pair(values, config.columns);
+    return grid;
 }
 
-void VisualGrid::importValues(std::pair<std::vector<uint8_t>, uint16_t> grid)
+void VisualGrid::importValues(Grid grid)
 {
-    if (config.columns != grid.second)
+    if (config.columns != grid.getColumnsSize())
     {
         return;
     }
-    std::transform(rectangles.begin(), rectangles.end(), grid.first.begin(), rectangles.begin(),
-                   [this](sf::RectangleShape &rect, uint8_t &val)
+    Grid::Values &values = grid.getValues();
+
+    std::transform(rectangles.begin(), rectangles.end(), values.begin(), rectangles.begin(),
+                   [this](sf::RectangleShape &rect, Grid::CellState &state)
                    {
-                       val == 0 ? rect.setFillColor(this->inactiveColor) : rect.setFillColor(this->activeColor);
+                       state == Grid::CellState::Dead ? rect.setFillColor(this->inactiveColor) : rect.setFillColor(this->activeColor);
                        return rect;
                    });
 }

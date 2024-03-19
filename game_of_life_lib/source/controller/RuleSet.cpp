@@ -15,9 +15,9 @@ std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
             {
                 continue;
             }
-            int16_t value = index + r * colums + c;
+            int16_t value = index + r * grid.getColumnsSize() + c;
 
-            if (value >= 0 && value < grid.size())
+            if (value >= 0 && value < grid.getValues().size())
             {
                 indices.push_back(value);
             }
@@ -28,11 +28,15 @@ std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
 
 bool RuleSet::willSurvive(uint16_t index)
 {
+    const uint16_t underpopulationLimmit = 2;
+    const uint16_t overpopulationLimmit = 3;
+
+    auto values = grid.getValues();
     uint16_t aliveNeighbour{0};
     std::vector<uint16_t> indices = getValidNeighbourList(index);
     for (auto neighbour : indices)
     {
-        if (grid[neighbour] == alive)
+        if (values[neighbour] == Grid::CellState::Alive)
         {
             ++aliveNeighbour;
         }
@@ -47,11 +51,12 @@ bool RuleSet::willSurvive(uint16_t index)
 
 bool RuleSet::willCreate(uint16_t index)
 {
+    auto values = grid.getValues();
     uint16_t aliveNeighbour{0};
     std::vector<uint16_t> indices = getValidNeighbourList(index);
     for (auto neighbour : indices)
     {
-        if (grid[neighbour] == alive)
+        if (values[neighbour] == Grid::CellState::Alive)
         {
             ++aliveNeighbour;
         }
@@ -64,18 +69,20 @@ bool RuleSet::willCreate(uint16_t index)
     return false;
 }
 
-std::vector<uint8_t> RuleSet::calculate()
+Grid RuleSet::calculate()
 {
-    std::vector<uint8_t> newGrid;
-    for (auto i = 0; i < grid.size(); ++i)
+    auto values = grid.getValues();
+    Grid newGrid{grid};
+    auto &newValues = newGrid.getValues();
+    for (auto i = 0; i < values.size(); ++i)
     {
-        if (grid[i] == alive)
+        if (values[i] == Grid::CellState::Alive)
         {
-            willSurvive(i) ? newGrid.push_back(alive) : newGrid.push_back(dead);
+            newValues[i] = willSurvive(i) ? Grid::CellState::Alive : Grid::CellState::Dead;
         }
         else
         {
-            willCreate(i) ? newGrid.push_back(alive) : newGrid.push_back(dead);
+            newValues[i] = willCreate(i) ? Grid::CellState::Alive : Grid::CellState::Dead;
         }
     }
     grid = newGrid;

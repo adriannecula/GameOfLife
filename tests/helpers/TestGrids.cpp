@@ -3,8 +3,8 @@
 namespace helpers
 {
 
-    std::pair<std::vector<uint8_t>, uint16_t> getStandardGrid()
+    Grid getStandardGrid()
     {
-        return std::pair<std::vector<uint8_t>, uint16_t>{{1, 1, 1, 1}, 4};
+        return Grid{4, 4};
     }
 }

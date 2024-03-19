@@ -53,7 +53,7 @@ void Renderer::updateDisplay()
     {
 
         RuleSet g{scene.visualGrid.exportValues()};
-        scene.visualGrid.importValues({g.calculate(), scene.visualGrid.getcolums()});
+        scene.visualGrid.importValues(g.calculate());
     }
     window.clear();
     window.draw(scene.visualGrid);

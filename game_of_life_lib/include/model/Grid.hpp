@@ -3,39 +3,39 @@
 #include <cstdint>
 #include <vector>
 
-
 class Grid
 {
 public:
     using Rows = uint64_t;
     using Collumns = uint64_t;
     using Row = uint64_t;
-    using Column = uint64_t;
-        enum  class CellState: uint8_t{
+    using Collumn = uint64_t;
+    enum class CellState : uint8_t
+    {
         Alive,
         Dead
     };
-    using GridElemlements = std::vector<CellState>;
+    using Values = std::vector<CellState>;
     struct Cell
     {
         Row row;
-        Column column;
+        Collumn collumn;
     };
 
-   
     Grid(Rows row_, Collumns collum_);
-    Grid(Grid& grid_);
-    Grid(Grid&& grid_);
+    Grid(Grid &grid_);
+    Grid(Grid &&grid_);
+    auto operator=(Grid &) -> Grid & = default;
     bool ReviveCell(Cell cell);
     bool KillCell(Cell cell);
-    GridElemlements getGrid();
-private: 
+    Collumns getColumnsSize() const;
+
+    const Values &getValues() const;
+    Values &getValues();
+
+private:
     bool setCell(Cell cell, CellState state);
     Rows rows;
     Collumns collumns;
-    GridElemlements grid;
-   
-    
-
-
+    Values grid;
 };

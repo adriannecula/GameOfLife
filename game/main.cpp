@@ -8,16 +8,11 @@
 #include <view/Renderer.hpp>
 
 #include <controller/RuleSet.hpp>
-#include <model/Grid.hpp>
 
 #include "Configuration.hpp"
 
 int main()
 {
-    
-    Grid g{Grid::Rows{5},Grid::Collumns{5}};
-    
-    
     WindowInfo info{
         .width{window::windowWidth},
         .height{window::windowHeight},

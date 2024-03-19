@@ -7,13 +7,11 @@
 
 class RuleSetTests : public testing::Test
 {
-
 };
-
 
 TEST_F(RuleSetTests, MyTest)
 {
-    std::pair<std::vector<uint8_t>, uint16_t> grid = helpers::getStandardGrid();
+    auto grid = helpers::getStandardGrid();
     RuleSet game{grid};
     game.calculate();
     std::cout << "it's alive\n";

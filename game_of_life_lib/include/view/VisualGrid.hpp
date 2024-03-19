@@ -6,6 +6,7 @@
 #include <vector>
 #include <utility>
 #include <memory>
+#include <model/Grid.hpp>
 class VisualGrid : public sf::Drawable
 {
 public:
@@ -24,8 +25,8 @@ public:
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
     void toggleSquare(uint16_t index);
     uint16_t getRectangleFromMouseInput(uint16_t colum, uint16_t row) const;
-    std::pair<std::vector<uint8_t>, uint16_t> exportValues() const;
-    void importValues(std::pair<std::vector<uint8_t>, uint16_t> grid);
+    Grid exportValues() const;
+    void importValues(Grid grid);
     uint16_t getcolums()
     {
         return config.columns;
