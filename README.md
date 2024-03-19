@@ -12,7 +12,7 @@ The unit test are written using [googletest](https://github.com/google/googletes
 
 ### Setup ubuntu
 WIP
-### Setup on windown
+### Setup on windows
 WIP
 
 ## Limitations
