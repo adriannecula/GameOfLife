@@ -19,7 +19,7 @@ These rules, which compare the behaviour of the automaton to real life, can be c
 3. All other live cells die in the next generation. Similarly, all other dead cells stay dead.
 
 ## Descrtiption
-This documents contains the main elements needed to create the game of life
+The main elements used to create game of life are
 
 ### Grid
 A grid is used to represent the cells in the game. Each cell can be in one of two states: alive or dead. The grid provides a visual representation of the current state of the game.

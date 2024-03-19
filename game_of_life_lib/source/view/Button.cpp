@@ -1,5 +1,5 @@
 #include <iostream>
-#include <Button.hpp>
+#include <view/Button.hpp>
 #include <SFML/Graphics.hpp>
 
 void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
@@ -15,7 +15,8 @@ bool Button::checkMousePressEvent(sf::Event event)
         if (rectangle.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
         {
             return true;
-            std::cout<<"Button pressed\n"<<std::endl;
+            std::cout << "Button pressed\n"
+                      << std::endl;
         }
     }
     return false;

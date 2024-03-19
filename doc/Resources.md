@@ -10,7 +10,6 @@
 - Configure VSCode with CMake [here](https://code.visualstudio.com/docs/cpp/cmake-linux)
 - Make a grid with SFML [here](https://github.dev/vini-fda/Electric-Charges/blob/master/grid.cpp)
 
-
 ## Build hints
 
 sudo apt install libgl1-mesa-dev 
@@ -21,9 +20,7 @@ sudo apt install libvorbis-dev
 sudo apt install libflac-dev
 sudo apt install libxcursor-dev 
 sudo apt install libxrandr-dev
-sudo apt install libfreetype6-dev 
 sudo apt install libfreetype-dev 
-sudo apt install libfreetype6-dev 
+sudo apt-get install libx11-dev
 sudo apt install pkgconf 
 
-sudo apt-get install libx11-dev

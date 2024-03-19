@@ -1,4 +1,4 @@
-#include <VisualGrid.hpp>
+#include <view/VisualGrid.hpp>
 #include <SFML/Graphics.hpp>
 #include <cmath>
 #include <iostream>
@@ -12,7 +12,7 @@ void VisualGrid::generateGrid()
 
             sf::RectangleShape rectangle{sf::Vector2f{config.cellSize, config.cellSize}};
 
-            rectangle.setPosition(config.offsetX+x * config.cellSize, config.offsetY +y  * config.cellSize);
+            rectangle.setPosition(config.offsetX + x * config.cellSize, config.offsetY + y * config.cellSize);
             rectangle.setOutlineColor(sf::Color::White);
             rectangle.setOutlineThickness(1.f);
             rectangle.setFillColor(inactiveColor);
@@ -38,7 +38,7 @@ void VisualGrid::toggleSquare(uint16_t index)
     rectangles[index].getFillColor() == inactiveColor ? rectangles[index].setFillColor(activeColor) : rectangles[index].setFillColor(inactiveColor);
 }
 
-std::pair<std::vector<uint8_t>,uint16_t> VisualGrid::exportValues() const
+std::pair<std::vector<uint8_t>, uint16_t> VisualGrid::exportValues() const
 {
     std::vector<uint8_t> values;
     for (const auto &rectangle : rectangles)
@@ -48,7 +48,7 @@ std::pair<std::vector<uint8_t>,uint16_t> VisualGrid::exportValues() const
     return std::make_pair(values, config.columns);
 }
 
-void VisualGrid::importValues(std::pair<std::vector<uint8_t>,uint16_t> grid)
+void VisualGrid::importValues(std::pair<std::vector<uint8_t>, uint16_t> grid)
 {
     if (config.columns != grid.second)
     {
@@ -65,15 +65,12 @@ void VisualGrid::importValues(std::pair<std::vector<uint8_t>,uint16_t> grid)
 uint16_t VisualGrid::getRectangleFromMouseInput(uint16_t x, uint16_t y) const
 {
     // TODO: if line on the border
-     int32_t normX = x- config.offsetX;
-     int32_t normY = y- config.offsetY;
-     if( normX  <0 || normY  < 0
-        || normX > config.columns* static_cast<int>(std::round(config.cellSize)) 
-        || normY > config.rows* static_cast<int>(std::round(config.cellSize)))
+    int32_t normX = x - config.offsetX;
+    int32_t normY = y - config.offsetY;
+    if (normX < 0 || normY < 0 || normX > config.columns * static_cast<int>(std::round(config.cellSize)) || normY > config.rows * static_cast<int>(std::round(config.cellSize)))
     {
         return UINT16_MAX;
-    }  
-
+    }
 
     uint16_t cellSizeRound = static_cast<int>(std::round(config.cellSize));
     std::cout << "celsize: " << cellSizeRound << std::endl;

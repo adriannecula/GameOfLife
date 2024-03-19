@@ -1,10 +1,10 @@
-#include <GameOfLife.hpp>
+#include <controller/RuleSet.hpp>
 
 // Find the number of valid neighbours for this cell
 //   x x x
 //   x o x
 //   x x x
-std::vector<uint16_t> GameOfLife::getValidNeighbourList(const uint16_t index) const
+std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
 {
     std::vector<uint16_t> indices;
     for (auto r = -1; r < 2; ++r)
@@ -26,7 +26,7 @@ std::vector<uint16_t> GameOfLife::getValidNeighbourList(const uint16_t index) co
     return indices;
 }
 
-bool GameOfLife::willSurvive(uint16_t index)
+bool RuleSet::willSurvive(uint16_t index)
 {
     uint16_t aliveNeighbour{0};
     std::vector<uint16_t> indices = getValidNeighbourList(index);
@@ -45,7 +45,7 @@ bool GameOfLife::willSurvive(uint16_t index)
     return true;
 }
 
-bool GameOfLife::willCreate(uint16_t index)
+bool RuleSet::willCreate(uint16_t index)
 {
     uint16_t aliveNeighbour{0};
     std::vector<uint16_t> indices = getValidNeighbourList(index);
@@ -56,7 +56,7 @@ bool GameOfLife::willCreate(uint16_t index)
             ++aliveNeighbour;
         }
     }
-    if (aliveNeighbour  == 3)
+    if (aliveNeighbour == 3)
     {
         return true;
     }
@@ -64,22 +64,19 @@ bool GameOfLife::willCreate(uint16_t index)
     return false;
 }
 
-
-
-std::vector<uint8_t> GameOfLife::calculate()
-{    
+std::vector<uint8_t> RuleSet::calculate()
+{
     std::vector<uint8_t> newGrid;
     for (auto i = 0; i < grid.size(); ++i)
     {
         if (grid[i] == alive)
         {
-            willSurvive(i) ?  newGrid.push_back(alive) : newGrid.push_back(dead);  
+            willSurvive(i) ? newGrid.push_back(alive) : newGrid.push_back(dead);
         }
         else
         {
-             willCreate(i) ?  newGrid.push_back(alive) : newGrid.push_back(dead);  
+            willCreate(i) ? newGrid.push_back(alive) : newGrid.push_back(dead);
         }
-   
     }
     grid = newGrid;
     return grid;
