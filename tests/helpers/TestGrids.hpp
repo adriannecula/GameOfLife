@@ -2,8 +2,9 @@
 #include <vector>
 #include <utility>
 #include <cstdint>
+#include <model/Grid.hpp>
 namespace helpers
 {
-    std::pair<std::vector<uint8_t>, uint16_t> getStandardGrid();
+   Grid getStandardGrid();
 
 }

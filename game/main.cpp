@@ -8,14 +8,11 @@
 #include <view/Renderer.hpp>
 
 #include <controller/RuleSet.hpp>
-#include <model/Grid.hpp>
 
 #include "Configuration.hpp"
 
 int main()
 {
-    Grid g{};
-    g.foobar();
     WindowInfo info{
         .width{window::windowWidth},
         .height{window::windowHeight},
