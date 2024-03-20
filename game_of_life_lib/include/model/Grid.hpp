@@ -6,16 +6,16 @@
 class Grid
 {
 public:
-    using Rows = uint64_t;
-    using Collumns = uint64_t;
-    using Row = uint64_t;
-    using Collumn = uint64_t;
+    using Rows = uint32_t;
+    using Collumns = uint32_t;
+    using Row = uint32_t;
+    using Collumn = uint32_t;
     enum class CellState : uint8_t
     {
         Alive,
         Dead
     };
-    using Values = std::vector<CellState>;
+    using Array = std::vector<CellState>;
     struct Cell
     {
         Row row;
@@ -23,6 +23,7 @@ public:
     };
 
     Grid(Rows row_, Collumns collum_);
+    Grid(Rows row_, Collumns collum_, Array& grid_);
     Grid(Grid &grid_);
     Grid(Grid &&grid_);
     auto operator=(Grid &) -> Grid & = default;
@@ -30,12 +31,12 @@ public:
     bool KillCell(Cell cell);
     Collumns getColumnsSize() const;
 
-    const Values &getValues() const;
-    Values &getValues();
+    const Array &getArray() const;
+    Array &getArray();
 
 private:
     bool setCell(Cell cell, CellState state);
     Rows rows;
     Collumns collumns;
-    Values grid;
+    Array grid;
 };
