@@ -42,7 +42,7 @@ void VisualGrid::toggleSquare(uint16_t index)
 Grid VisualGrid::exportValues() const
 {
     Grid grid{Grid::Rows{config.rows}, Grid::Collumns{config.columns}};
-    Grid::Values &vector = grid.getValues();
+    Grid::Array &vector = grid.getArray();
 
     for (const auto &rectangle : rectangles)
     {
@@ -57,7 +57,7 @@ void VisualGrid::importValues(Grid grid)
     {
         return;
     }
-    Grid::Values &values = grid.getValues();
+    Grid::Array &values = grid.getArray();
 
     std::transform(rectangles.begin(), rectangles.end(), values.begin(), rectangles.begin(),
                    [this](sf::RectangleShape &rect, Grid::CellState &state)
