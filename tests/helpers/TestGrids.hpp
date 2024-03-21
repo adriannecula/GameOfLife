@@ -15,7 +15,11 @@ namespace helpers
         dies_2_line_horisontal,
         osclilator_3_line_horizontal,
         osclilator_3_line_vertical,
-        still_4_block
+        still_4_block,
+        still_4_tub,
+        still_6_beehive,
+        spaceship_5_glider_laydown_L,
+        spaceship_5_glider_up_Z
     };
     Grid getStandardGrid(Patterns pattern);
  };

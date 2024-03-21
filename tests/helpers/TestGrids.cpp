@@ -33,6 +33,20 @@ namespace helpers
             array[12] = Grid::CellState::Alive;
             array[17] = Grid::CellState::Alive;
             break;   
+        case Patterns::spaceship_5_glider_laydown_L:
+            array[16] = Grid::CellState::Alive; 
+            array[17] = Grid::CellState::Alive;
+            array[18] = Grid::CellState::Alive;
+            array[13] = Grid::CellState::Alive;
+            array[07] = Grid::CellState::Alive;
+            break;
+         case Patterns::spaceship_5_glider_up_Z:
+            array[11] = Grid::CellState::Alive; 
+            array[13] = Grid::CellState::Alive;
+            array[17] = Grid::CellState::Alive;
+            array[18] = Grid::CellState::Alive;
+            array[22] = Grid::CellState::Alive;
+            break;    
         default:
             break;
         }
