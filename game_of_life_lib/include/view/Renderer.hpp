@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <view/Button.hpp>
+#include <view/IconButton.hpp>
+#include <view/MessageBox.hpp>
 #include <controller/RuleSet.hpp>
 #include <view/VisualGrid.hpp>
 
@@ -9,7 +10,11 @@
 struct Scene
 {
     VisualGrid visualGrid;
-    Button startButton;
+    IconButton startButton;
+    IconButton stopButton;
+    MessageBox staus;
+    MessageBox iterationText;
+    MessageBox iterationNumber;
 };
 
 struct WindowInfo
@@ -34,4 +39,5 @@ private:
     bool isSimulationStarted;
     std::mutex mtx;
     std::condition_variable cv;
+    RuleSet ruleSet;
 };

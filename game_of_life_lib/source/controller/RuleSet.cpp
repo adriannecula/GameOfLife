@@ -72,6 +72,7 @@ bool RuleSet::willCreate(uint16_t index)
 Grid RuleSet::calculate()
 {
     auto values = grid.getValues();
+    ++iterations;
     Grid newGrid{grid};
     auto &newValues = newGrid.getValues();
     for (auto i = 0; i < values.size(); ++i)
@@ -85,6 +86,12 @@ Grid RuleSet::calculate()
             newValues[i] = willCreate(i) ? Grid::CellState::Alive : Grid::CellState::Dead;
         }
     }
+
+    if(newGrid == grid)
+    {
+        isStable = true;   
+    }
     grid = newGrid;
+
     return grid;
 }

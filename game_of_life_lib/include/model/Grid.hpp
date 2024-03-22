@@ -32,7 +32,10 @@ public:
 
     const Values &getValues() const;
     Values &getValues();
-
+    inline bool operator==(const Grid& rhs)
+    {
+        return (grid == rhs.grid && collumns == rhs.collumns);
+    }
 private:
     bool setCell(Cell cell, CellState state);
     Rows rows;

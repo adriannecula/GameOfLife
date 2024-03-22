@@ -20,10 +20,19 @@ namespace grid
 namespace resources
 {
     const std::string fontLocation = "../resources/font/geo_1.ttf";
+    const std::string playIcon = "../resources/textures/start96.png";
+    const std::string stopIcon = "../resources/textures/stop96.png";
+                                   
 }
 
 namespace button
 {
-    const uint16_t width = 50;
-    const uint16_t height = 20;
+    const uint16_t width =30;
+    const uint16_t height = 30;
+}
+
+namespace messageBox
+{
+    const uint16_t width = 90;
+    const uint16_t height = 25;
 }

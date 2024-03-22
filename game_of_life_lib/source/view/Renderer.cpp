@@ -34,7 +34,6 @@ void Renderer::handleEvents()
 
         if (event.type == sf::Event::MouseButtonPressed)
         {
-            std::cout << "mouse x: " << event.mouseButton.x << " mouse y: " << event.mouseButton.y << std::endl;
             uint16_t square = scene.visualGrid.getRectangleFromMouseInput(event.mouseButton.x, event.mouseButton.y);
             if (square != UINT16_MAX)
             {
@@ -43,8 +42,16 @@ void Renderer::handleEvents()
         }
         if (scene.startButton.checkMousePressEvent(event))
         {
-            isSimulationStarted = !isSimulationStarted;
+            isSimulationStarted = true;
+            scene.staus.setText("Running");
+            ruleSet.setGrid(scene.visualGrid.exportValues());
         }
+        if (scene.stopButton.checkMousePressEvent(event))
+        {
+            isSimulationStarted = false;
+            scene.staus.setText("Stopped");
+        }
+
     }
 }
 void Renderer::updateDisplay()
@@ -52,11 +59,23 @@ void Renderer::updateDisplay()
     if (isSimulationStarted)
     {
 
-        RuleSet g{scene.visualGrid.exportValues()};
-        scene.visualGrid.importValues(g.calculate());
+       
+        Grid grid = ruleSet.calculate();
+        scene.iterationNumber.setText(std::to_string(ruleSet.getIterations()));
+        if (ruleSet.isGridStable())
+        {
+            isSimulationStarted = false;
+            scene.staus.setText("Stopped");
+        }
+        scene.visualGrid.importValues(grid);
+
     }
     window.clear();
     window.draw(scene.visualGrid);
     window.draw(scene.startButton);
+    window.draw(scene.stopButton);
+    window.draw(scene.staus);
+    window.draw(scene.iterationText);
+    window.draw(scene.iterationNumber);
     window.display();
 }
