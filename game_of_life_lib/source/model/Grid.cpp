@@ -56,7 +56,7 @@ bool Grid::setCell(Cell cell, CellState state)
 }
 
 
-bool Grid::operator==(const Grid& rhs)
+bool Grid::operator==(const Grid& rhs) const
 {
     return (values == rhs.values && collumns == rhs.collumns);
 }

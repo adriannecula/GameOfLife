@@ -31,7 +31,7 @@ public:
 
     const Values &getValues() const;
     Values &getValues();
-    bool operator==(const Grid& rhs);
+    bool operator==(const Grid& rhs) const;
 
 private:
     bool setCell(Cell cell, CellState state);
