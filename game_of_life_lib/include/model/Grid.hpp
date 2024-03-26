@@ -1,5 +1,4 @@
 #pragma once
-
 #include <cstdint>
 #include <vector>
 
@@ -32,10 +31,8 @@ public:
 
     const Values &getValues() const;
     Values &getValues();
-    inline bool operator==(const Grid& rhs)
-    {
-        return (grid == rhs.grid && collumns == rhs.collumns);
-    }
+    bool operator==(const Grid& rhs);
+
 private:
     bool setCell(Cell cell, CellState state);
     Rows rows;

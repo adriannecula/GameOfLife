@@ -54,3 +54,9 @@ bool Grid::setCell(Cell cell, CellState state)
     grid[rows * cell.collumn + cell.row] = state;
     return true;
 }
+
+
+bool Grid::operator==(const Grid& rhs)
+{
+    return (grid == rhs.grid && collumns == rhs.collumns);
+}
