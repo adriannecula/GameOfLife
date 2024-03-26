@@ -11,14 +11,14 @@ Grid::Grid(Rows rows_, Collumns collums_)
 Grid::Grid(Grid &grid_)
     : rows{grid_.rows},
       collumns{grid_.collumns},
-      grid{grid_.grid}
+      values{grid_.values}
 {
 }
 
 Grid::Grid(Grid &&grid_)
     : rows{grid_.rows},
       collumns{grid_.collumns},
-      grid{std::move(grid_.grid)}
+    values{std::move(grid_.values)}
 {
 }
 bool Grid::ReviveCell(Cell cell)
@@ -38,12 +38,12 @@ bool Grid::KillCell(Cell cell)
 
 const Grid::Values &Grid::getValues() const
 {
-    return grid;
+    return values;
 }
 
 Grid::Values &Grid::getValues()
 {
-    return grid;
+    return values;
 }
 bool Grid::setCell(Cell cell, CellState state)
 {
@@ -51,12 +51,12 @@ bool Grid::setCell(Cell cell, CellState state)
     {
         return false;
     }
-    grid[rows * cell.collumn + cell.row] = state;
+    values[rows * cell.collumn + cell.row] = state;
     return true;
 }
 
 
 bool Grid::operator==(const Grid& rhs)
 {
-    return (grid == rhs.grid && collumns == rhs.collumns);
+    return (values == rhs.values && collumns == rhs.collumns);
 }

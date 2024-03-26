@@ -37,5 +37,5 @@ private:
     bool setCell(Cell cell, CellState state);
     Rows rows;
     Collumns collumns;
-    Values grid;
+    Values values;
 };
