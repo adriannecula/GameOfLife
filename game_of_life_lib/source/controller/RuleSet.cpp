@@ -17,7 +17,7 @@ std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
             }
             int16_t value = index + r * grid.getColumnsSize() + c;
 
-            if (value >= 0 && value < grid.getValues().size())
+            if (value >= 0 && value < grid.getArray().size())
             {
                 indices.push_back(value);
             }
@@ -31,7 +31,7 @@ bool RuleSet::willSurvive(uint16_t index)
     const uint16_t underpopulationLimmit = 2;
     const uint16_t overpopulationLimmit = 3;
 
-    auto values = grid.getValues();
+    auto values = grid.getArray();
     uint16_t aliveNeighbour{0};
     std::vector<uint16_t> indices = getValidNeighbourList(index);
     for (auto neighbour : indices)
@@ -51,7 +51,7 @@ bool RuleSet::willSurvive(uint16_t index)
 
 bool RuleSet::willCreate(uint16_t index)
 {
-    auto values = grid.getValues();
+    auto values = grid.getArray();
     uint16_t aliveNeighbour{0};
     std::vector<uint16_t> indices = getValidNeighbourList(index);
     for (auto neighbour : indices)
@@ -71,11 +71,14 @@ bool RuleSet::willCreate(uint16_t index)
 
 Grid RuleSet::calculate()
 {
+
      isStable =false;
-    auto values = grid.getValues();
+      auto values = grid.getArray();
     ++iterations;
+
+
     Grid newGrid{grid};
-    auto &newValues = newGrid.getValues();
+    auto &newValues = newGrid.getArray();
     for (auto i = 0; i < values.size(); ++i)
     {
         if (values[i] == Grid::CellState::Alive)

@@ -8,6 +8,14 @@ Grid::Grid(Rows rows_, Collumns collums_)
 {
 }
 
+Grid::Grid(Rows rows_, Collumns collums_, Array& grid_)
+:rows{rows_},
+collumns{collums_},
+grid{grid_}
+{
+
+}
+
 Grid::Grid(Grid &grid_)
     : rows{grid_.rows},
       collumns{grid_.collumns},
@@ -36,12 +44,12 @@ bool Grid::KillCell(Cell cell)
     return setCell(cell, CellState::Dead);
 }
 
-const Grid::Values &Grid::getValues() const
+const Grid::Array &Grid::getArray() const
 {
     return values;
 }
 
-Grid::Values &Grid::getValues()
+Grid::Array &Grid::getArray()
 {
     return values;
 }
