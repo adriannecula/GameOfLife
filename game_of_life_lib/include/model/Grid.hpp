@@ -38,6 +38,6 @@ private:
     bool setCell(Cell cell, CellState state);
     Rows rows;
     Collumns collumns;
-    Array grid;
+    Array values;
 
 };

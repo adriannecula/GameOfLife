@@ -8,10 +8,10 @@ Grid::Grid(Rows rows_, Collumns collums_)
 {
 }
 
-Grid::Grid(Rows rows_, Collumns collums_, Array& grid_)
+Grid::Grid(Rows rows_, Collumns collums_, Array& values_)
 :rows{rows_},
 collumns{collums_},
-grid{grid_}
+values{values_}
 {
 
 }
