@@ -8,10 +8,10 @@ Grid::Grid(Rows rows_, Collumns collums_)
 {
 }
 
-Grid::Grid(Rows rows_, Collumns collums_, Array& grid_)
+Grid::Grid(Rows rows_, Collumns collums_, Array& values_)
 :rows{rows_},
 collumns{collums_},
-grid{grid_}
+values{values_}
 {
 
 }
@@ -19,14 +19,14 @@ grid{grid_}
 Grid::Grid(Grid &grid_)
     : rows{grid_.rows},
       collumns{grid_.collumns},
-      grid{grid_.grid}
+      values{grid_.values}
 {
 }
 
 Grid::Grid(Grid &&grid_)
     : rows{grid_.rows},
       collumns{grid_.collumns},
-      grid{std::move(grid_.grid)}
+    values{std::move(grid_.values)}
 {
 }
 bool Grid::ReviveCell(Cell cell)
@@ -46,12 +46,12 @@ bool Grid::KillCell(Cell cell)
 
 const Grid::Array &Grid::getArray() const
 {
-    return grid;
+    return values;
 }
 
 Grid::Array &Grid::getArray()
 {
-    return grid;
+    return values;
 }
 bool Grid::setCell(Cell cell, CellState state)
 {
@@ -59,6 +59,12 @@ bool Grid::setCell(Cell cell, CellState state)
     {
         return false;
     }
-    grid[rows * cell.collumn + cell.row] = state;
+    values[rows * cell.collumn + cell.row] = state;
     return true;
+}
+
+
+bool Grid::operator==(const Grid& rhs) const
+{
+    return (values == rhs.values && collumns == rhs.collumns);
 }

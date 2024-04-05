@@ -1,5 +1,4 @@
 #pragma once
-
 #include <cstdint>
 #include <vector>
 
@@ -31,6 +30,7 @@ public:
     bool KillCell(Cell cell);
     Collumns getColumnsSize() const;
 
+    bool operator==(const Grid& rhs) const;
     const Array &getArray() const;
     Array &getArray();
 
@@ -38,5 +38,6 @@ private:
     bool setCell(Cell cell, CellState state);
     Rows rows;
     Collumns collumns;
-    Array grid;
+    Array values;
+
 };

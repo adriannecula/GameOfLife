@@ -8,34 +8,41 @@
 
 #include <cstdint>
 
-class Button : public sf::Drawable
+class MessageBox : public sf::Drawable
 {
 public:
     struct Properties
     {
         sf::Vector2f position;
         sf::Vector2f size;
-        sf::Color color;
+        sf::Color fillColor;
+        sf::Color outlineColor;
+        float outlineTickeness;
         std::string message;
         sf::Font font;
+        sf::Texture icon;
     };
 
-    Button(Properties properties_)
+    MessageBox(Properties properties_)
         : properties{properties_},
           rectangle{properties_.size},
           text{properties.message, properties.font, 20}
     {
         rectangle.setPosition(properties_.position);
-        rectangle.setFillColor(properties_.color);
+        rectangle.setFillColor(properties_.fillColor);
+        rectangle.setOutlineColor(properties.outlineColor);
+        rectangle.setOutlineThickness(properties.outlineTickeness);
         text.setPosition(properties.position);
     }
+    
+    ~MessageBox()= default;
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
+    void setText (std::string text);
     bool checkMousePressEvent(sf::Event event);
-
 private:
     Properties properties;
     sf::RectangleShape rectangle;
     sf::Text text;
 };
 
-using ButtonHandle = std::shared_ptr<Button>;
+using ButtonHandle = std::shared_ptr<MessageBox>;

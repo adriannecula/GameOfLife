@@ -1,14 +1,14 @@
 #include <iostream>
-#include <view/Button.hpp>
+#include <view/MessageBox.hpp>
 #include <SFML/Graphics.hpp>
 
-void Button::draw(sf::RenderTarget &target, sf::RenderStates states) const
+void MessageBox::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     target.draw(rectangle);
     target.draw(text);
 }
 
-bool Button::checkMousePressEvent(sf::Event event)
+bool MessageBox::checkMousePressEvent(sf::Event event)
 {
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
@@ -20,4 +20,8 @@ bool Button::checkMousePressEvent(sf::Event event)
         }
     }
     return false;
+}
+void MessageBox::setText (std::string message)
+{
+    text.setString(message); 
 }

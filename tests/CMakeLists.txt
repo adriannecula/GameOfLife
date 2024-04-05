@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
-project(game_of_life_tests)
+project(tests_of_life)
 
 
 add_executable(${PROJECT_NAME})
