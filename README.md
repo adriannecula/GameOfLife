@@ -7,7 +7,7 @@ Can be used in learning activities (workshops, code retreats).
 
 ![Game of Life](doc/resources/demo.gif)
 
-The graphical interface isdeveloped in [SFML library](https://www.sfml-dev.org/index.php).
+The graphical interface is developed in [SFML library](https://www.sfml-dev.org/index.php).
 The unit test are written using [googletest](https://github.com/google/googletest)
 
 ## Limitations
