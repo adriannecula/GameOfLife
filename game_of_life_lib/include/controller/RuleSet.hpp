@@ -2,6 +2,7 @@
 
 #include <vector>
 #include <cstdint>
+#include <functional>
 #include <model/Grid.hpp>
 class RuleSet
 {
@@ -9,7 +10,7 @@ public:
     RuleSet()
     :grid{1,1}
     {
-
+       
     }
     RuleSet(Grid grid_)
         : grid{grid_}, iterations{0}, isStable{false}
@@ -45,4 +46,6 @@ private:
     Grid grid;
     uint64_t iterations;
     bool isStable;
+    //bool isPeriodicallyBounded;
+   // std::function<std::vector<uint16_t>(const RuleSet&, u_int16_t) >getNeighbours;
 };

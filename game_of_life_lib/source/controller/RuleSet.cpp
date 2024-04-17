@@ -1,29 +1,70 @@
 #include <controller/RuleSet.hpp>
-
 // Find the number of valid neighbours for this cell
 //   x x x
 //   x o x
 //   x x x
+
 std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
 {
-    std::vector<uint16_t> indices;
-    for (auto r = -1; r < 2; ++r)
+    Grid::Collumn collumCount = grid.getColumnsSize();
+    int16_t rowCount = grid.getArray().size() / collumCount;
+    int16_t cellRow = index / collumCount;
+    int16_t cellColum = index % collumCount;
+
+    std::vector<uint16_t> neighbours;
+
+    for (auto row = -1; row < 2; ++row)
     {
-        for (auto c = -1; c < 2; ++c)
+        for (auto column = -1; column < 2; ++column)
         {
-            if (r == 0 && c == 0)
+            if (row == 0 && column == 0)
             {
                 continue;
             }
-            int16_t value = index + r * grid.getColumnsSize() + c;
 
-            if (value >= 0 && value < grid.getArray().size())
+            int16_t neighbourRow = cellRow - row;
+            int16_t neighbourColumn = cellColum - column;
+            if (neighbourRow == -1)
             {
-                indices.push_back(value);
+                neighbourRow = rowCount - 1;
             }
+            else if (neighbourRow >= rowCount)
+            {
+                neighbourRow = 0;
+            }
+            if (neighbourColumn == -1)
+            {
+                neighbourColumn = collumCount - 1;
+            }
+
+            else if (neighbourColumn >= collumCount)
+            {
+                neighbourColumn = 0;
+            }
+            
+            int16_t neighbourIndex = neighbourRow * grid.getColumnsSize() + neighbourColumn;
+
+            neighbours.push_back(neighbourIndex);
         }
     }
-    return indices;
+
+    // for (auto row = -1; row < 2; ++row)
+    // {
+    //     for (auto column = -1; column < 2; ++column)
+    //     {
+    //         if (row == 0 && column == 0)
+    //         {
+    //             continue;
+    //         }
+    //         int16_t neighbourIndex = index + row * grid.getColumnsSize() + column;
+
+    //         if (neighbourIndex >= 0 && neighbourIndex < grid.getArray().size())
+    //         {
+    //           break;
+    //         }
+    //     }
+    // }
+    return neighbours;
 }
 
 bool RuleSet::willSurvive(uint16_t index)
@@ -72,10 +113,9 @@ bool RuleSet::willCreate(uint16_t index)
 Grid RuleSet::calculate()
 {
 
-     isStable =false;
-      auto values = grid.getArray();
+    isStable = false;
+    auto values = grid.getArray();
     ++iterations;
-
 
     Grid newGrid{grid};
     auto &newValues = newGrid.getArray();
@@ -90,10 +130,10 @@ Grid RuleSet::calculate()
             newValues[i] = willCreate(i) ? Grid::CellState::Alive : Grid::CellState::Dead;
         }
     }
-   
-    if(newGrid == grid)
+
+    if (newGrid == grid)
     {
-        isStable = true;   
+        isStable = true;
     }
     grid = newGrid;
 
