@@ -1,10 +1,34 @@
 #include <controller/RuleSet.hpp>
-// Find the number of valid neighbours for this cell
+
+
+// Find neighbours for this cell
 //   x x x
 //   x o x
 //   x x x
+std::vector<uint16_t> RuleSet::getBoundedNeighbours(const uint16_t index) const
+{
+    std::vector<uint16_t> neighbours;
 
-std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
+    for (auto row = -1; row < 2; ++row)
+    {
+        for (auto column = -1; column < 2; ++column)
+        {
+            if (row == 0 && column == 0)
+            {
+                continue;
+            }
+            int16_t neighbourIndex = index + row * grid.getColumnsSize() + column;
+
+            if (neighbourIndex >= 0 && neighbourIndex < grid.getArray().size())
+            {
+                break;
+            }
+        }
+    }
+    return neighbours;
+}
+
+std::vector<uint16_t> RuleSet::getUnboundedNeighbours(const uint16_t index) const
 {
     Grid::Collumn collumCount = grid.getColumnsSize();
     int16_t rowCount = grid.getArray().size() / collumCount;
@@ -41,31 +65,28 @@ std::vector<uint16_t> RuleSet::getValidNeighbourList(const uint16_t index) const
             {
                 neighbourColumn = 0;
             }
-            
+
             int16_t neighbourIndex = neighbourRow * grid.getColumnsSize() + neighbourColumn;
 
             neighbours.push_back(neighbourIndex);
         }
     }
 
-    // for (auto row = -1; row < 2; ++row)
-    // {
-    //     for (auto column = -1; column < 2; ++column)
-    //     {
-    //         if (row == 0 && column == 0)
-    //         {
-    //             continue;
-    //         }
-    //         int16_t neighbourIndex = index + row * grid.getColumnsSize() + column;
-
-    //         if (neighbourIndex >= 0 && neighbourIndex < grid.getArray().size())
-    //         {
-    //           break;
-    //         }
-    //     }
-    // }
     return neighbours;
 }
+
+void RuleSet::DisableBorders()
+{
+    isPeriodicallyBounded = true;
+    getNeighbours = std::bind(&RuleSet::getUnboundedNeighbours, this, std::placeholders::_1);
+}
+
+void RuleSet::EnableBorders()
+{
+    isPeriodicallyBounded = false;
+    getNeighbours = std::bind(&RuleSet::getBoundedNeighbours, this, std::placeholders::_1);
+}
+
 
 bool RuleSet::willSurvive(uint16_t index)
 {
@@ -74,7 +95,7 @@ bool RuleSet::willSurvive(uint16_t index)
 
     auto values = grid.getArray();
     uint16_t aliveNeighbour{0};
-    std::vector<uint16_t> indices = getValidNeighbourList(index);
+    std::vector<uint16_t> indices = getNeighbours(index);
     for (auto neighbour : indices)
     {
         if (values[neighbour] == Grid::CellState::Alive)
@@ -94,7 +115,7 @@ bool RuleSet::willCreate(uint16_t index)
 {
     auto values = grid.getArray();
     uint16_t aliveNeighbour{0};
-    std::vector<uint16_t> indices = getValidNeighbourList(index);
+    std::vector<uint16_t> indices = getUnboundedNeighbours(index);
     for (auto neighbour : indices)
     {
         if (values[neighbour] == Grid::CellState::Alive)
