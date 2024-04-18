@@ -50,5 +50,5 @@ private:
     uint64_t iterations;
     bool isStable;
     bool isPeriodicallyBounded;
-    std::function<std::vector<uint16_t>(u_int16_t) >getNeighbours;
+    std::function<std::vector<uint16_t>(uint16_t) >getNeighbours;
 };
